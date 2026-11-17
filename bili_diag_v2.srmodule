@@ -1,0 +1,9 @@
+#!name=B站接口诊断 V2（临时启用）
+#!desc=只记录接口和有限数据结构；不删改响应、不主动上传日志。采完关闭。
+
+[Script]
+bili-diag-v2-request = type=http-request, pattern=^https?://(app\.bilibili\.com|api\.bilibili\.com|grpc\.biliapi\.net|api\.biliapi\.net|grpc\.bilibili\.com)/(x/|pgc/|bilibili\.), script-path=https://raw.githubusercontent.com/hnxylanan-design/bili-diag/main/bili_diag_v2.js, requires-body=0, timeout=10
+bili-diag-v2-response = type=http-response, pattern=^https?://(app\.bilibili\.com|api\.bilibili\.com|grpc\.biliapi\.net|api\.biliapi\.net|grpc\.bilibili\.com)/(x/|pgc/|bilibili\.), script-path=https://raw.githubusercontent.com/hnxylanan-design/bili-diag/main/bili_diag_v2.js, requires-body=1, binary-body-mode=1, max-size=4194304, timeout=10
+
+[MITM]
+hostname = %APPEND% app.bilibili.com, api.bilibili.com, grpc.biliapi.net, api.biliapi.net, grpc.bilibili.com
